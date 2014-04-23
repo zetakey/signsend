@@ -17,3 +17,8 @@ Source
 Live Demo
 ---------
 [Live Demo](http://apps.zetakey.com/signsend)
+
+Release Note
+-------------
+1. upload_file.php 
+Use getimagesize instead of imagesx and imagesy.

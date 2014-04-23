@@ -99,18 +99,21 @@ function base64_to_jpeg($base64_string, $output_file) {
 }
 
 function add_ZK_mark($inputfile, $outputfile) {
+    
+//    var_dump(gd_info());
     $im = @imagecreatefrompng($inputfile);
 
     $bg = @imagecolorallocate($im, 255, 255, 255);
     $textcolor = @imagecolorallocate($im, 0, 0, 255);
     
+    list($x, $y, $type) = getimagesize($inputfile);
     
-    $txtpos_x = imagesx($im) - 170;
-    $txtpos_y = imagesy($im) - 20;
+    $txtpos_x = $x - 170;
+    $txtpos_y = $y - 20;
     
     @imagestring($im, 5, $txtpos_x, $txtpos_y, 'Powered by Zetakey', $textcolor);
 
-    $txtpos_x = imagesx($im) - 145;
+    $txtpos_x = $x - 145;
     $txtpos_y = 20;
     
     @imagestring($im, 3, $txtpos_x, $txtpos_y, date("Y-m-d H:i:s"), $textcolor);
