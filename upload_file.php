@@ -99,6 +99,8 @@ function base64_to_jpeg($base64_string, $output_file) {
 }
 
 function add_ZK_mark($inputfile, $outputfile) {
+    
+//    var_dump(gd_info());
     $im = @imagecreatefrompng($inputfile);
 
     $bg = @imagecolorallocate($im, 255, 255, 255);
