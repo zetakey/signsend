@@ -203,13 +203,13 @@ function signatureSend() {
 	var sendemail = document.getElementById('sendemail').value;
 	var replyemail = document.getElementById('replyemail').value;
 
-	var form = document.createElement("form");
-	form.setAttribute("action", "upload_file.php");
-	form.setAttribute("enctype", "multipart/form-data");
-	form.setAttribute("method", "POST");
-	form.setAttribute("target", "_self");
-	form.innerHTML = '<input type="text" name="image" value="' + dataURL + '"/>' + '<input type="email" name="email" value="' + sendemail + '"/>' + '<input type="email" name="replyemail" value="' + replyemail + '"/>';
-	form.submit();
+	var dataform = document.createElement("form");
+	document.body.appendChild(dataform);
+	dataform.setAttribute("action","upload_file.php");
+	dataform.setAttribute("enctype","multipart/form-data");
+	dataform.setAttribute("method","POST");
+	dataform.setAttribute("target","_self");
+	dataform.innerHTML = '<input type="text" name="image" value="' + dataURL + '"/>' + '<input type="email" name="email" value="' + sendemail + '"/>' + '<input type="email" name="replyemail" value="' + replyemail + '"/>'+'<input type="submit" value="Click me" />';
+	dataform.submit();
 
 }
-

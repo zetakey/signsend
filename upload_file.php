@@ -37,7 +37,11 @@ function geturlonly() {
     $urlpath = explode('/', $_SERVER['PHP_SELF']);
     array_pop($urlpath);
     $scriptname = implode("/", $urlpath);
-    return $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . $scriptname . "/";
+    $http_protocol = 'http';
+    if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || ($_SERVER['SERVER_PORT'] == 443)){
+      $http_protocol = 'https';
+    }
+    return $http_protocol . "://" . $_SERVER["HTTP_HOST"] . $scriptname . "/";
 }
 
 function multi_attach_mail($to, $sendermail, $subject, $message, $files) {
@@ -99,23 +103,23 @@ function base64_to_jpeg($base64_string, $output_file) {
 }
 
 function add_ZK_mark($inputfile, $outputfile) {
-    
+
 //    var_dump(gd_info());
     $im = @imagecreatefrompng($inputfile);
 
     $bg = @imagecolorallocate($im, 255, 255, 255);
     $textcolor = @imagecolorallocate($im, 0, 0, 255);
-    
+
     list($x, $y, $type) = getimagesize($inputfile);
-    
+
     $txtpos_x = $x - 170;
     $txtpos_y = $y - 20;
-    
+
     @imagestring($im, 5, $txtpos_x, $txtpos_y, 'Powered by Zetakey', $textcolor);
 
     $txtpos_x = $x - 145;
     $txtpos_y = 20;
-    
+
     @imagestring($im, 3, $txtpos_x, $txtpos_y, date("Y-m-d H:i:s"), $textcolor);
 
     @imagepng($im, $outputfile);
@@ -126,7 +130,7 @@ function add_ZK_mark($inputfile, $outputfile) {
     @imagedestroy($im);
 
 }
-
+date_default_timezone_set("Asia/Hong_Kong");
 $output_file = "captured/signature" . date("Y-m-d-H-i-s-").time(). ".png";
 base64_to_jpeg($_POST["image"], $output_file);
 
@@ -164,4 +168,3 @@ echo "<a href=\"index.html\">Sign and Send again!</a>";
 
 exit ;
 ?>
-
