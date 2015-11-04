@@ -78,10 +78,10 @@ http://apps.zetakey.com/signsend
 			</div>
 
 			<script>
-				signatureCapture();
+				zkSignature.capture();
 			</script>
 
-			<button type="button" onclick="signatureClear()">
+			<button type="button" onclick="zkSignature.clear()">
 				Clear Signature
 			</button>
 			<br />
@@ -93,7 +93,7 @@ http://apps.zetakey.com/signsend
 				<label for="Email">From:</label>
 				<input type="email" id="replyemail"  size="35" value="contact@zetakey.com" disabled />(Disabled)
 				<br />
-				<button type="button" onclick="signatureSend()">
+				<button type="button" onclick="zkSignature.send()">
 					Send Email
 				</button>
 			</form>
